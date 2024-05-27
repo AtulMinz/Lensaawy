@@ -9,19 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.10.4",
+    "@lens-protocol/react-web": "^2.2.0",
+    "@lens-protocol/wagmi": "^4.1.2",
+    "@tanstack/react-query": "^5.37.1",
+    "connectkit": "^1.7.3",
+    "graphql": "^16.8.1",
+    "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.3"
+    "viem": "^2.12.1",
+    "wagmi": "^2.9.7"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3"
+    "typescript": "^5"
   },
   "packageManager": "pnpm@8.14.0+sha1.bb42032ff80dba5f9245bc1b03470d2fa0b7fb2f"
 }
