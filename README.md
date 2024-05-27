@@ -1,3 +1,3 @@
 ## withLens
 
-_# A decntralised social media for Gen-z to stay up to around the world._
+_A decntralised social media for Gen-z to stay up to around the world._
