@@ -6,7 +6,7 @@ import {
   useExplorePublications,
 } from "@lens-protocol/react-web";
 
-import { UpdateIcon } from "@radix-ui/react-icons";
+import { UpdateIcon, ReloadIcon } from "@radix-ui/react-icons";
 import {
   Card,
   CardContent,
@@ -15,6 +15,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import Markdown from "react-markdown";
+import { Suspense } from "react";
 
 const Publication = () => {
   let {
@@ -58,20 +59,24 @@ const Publication = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <img
-                  className=""
-                  src={
-                    publication.__typename === "Post" || "Quote"
-                      ? publication.metadata?.asset?.image?.optimized.uri
-                      : ""
-                  }
-                />
-                <Markdown className="mt-4 break-words">
-                  {publication.metadata?.content?.replace(
-                    /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi
-                    // "[LINK]($1)"
-                  )}
-                </Markdown>
+                <Suspense fallback={<ReloadIcon />}>
+                  <img
+                    className=""
+                    src={
+                      publication.__typename === "Post" || "Quote"
+                        ? publication.metadata?.asset?.image?.optimized.uri
+                        : ""
+                    }
+                  />
+                </Suspense>
+                <CardDescription>
+                  <Markdown className="mt-4 break-words">
+                    {publication.metadata?.content?.replace(
+                      /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi
+                      // "[LINK]($1)"
+                    )}
+                  </Markdown>
+                </CardDescription>
               </CardContent>
             </Card>
           ))}
