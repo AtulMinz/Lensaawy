@@ -16,6 +16,7 @@ import {
   CardDescription,
   CardHeader,
 } from "@/components/ui/card";
+import Markdown from "react-markdown";
 
 const Publication = () => {
   let {
@@ -45,34 +46,34 @@ const Publication = () => {
   }
 
   return (
-    <main className="w-full min-h-screen bg-black">
+    <main className="w-full min-h-screen">
       <div className="flex justify-center">
         <div className="w-[35vw] space-y-5">
           {publications?.map((publication) => (
             <Card>
               <CardHeader>
-                <CardTitle
-                  key={publication.id}
-                  className="h-3/4 flex justify-center"
-                >
-                  {publication.by.handle?.fullHandle}
+                <CardTitle key={publication.id} className="h-3/4">
+                  {publication.by.handle?.localName}
+                  <div className="text-gray-600 font-extralight text-sm">
+                    @{publication.by.handle?.fullHandle}
+                  </div>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <img
-                  className=""
+                  className="hover:fill-black"
                   src={
                     publication.__typename === "Post" || "Quote"
                       ? publication.metadata?.asset?.image?.optimized.uri
                       : ""
                   }
                 />
-                <div className="mt-4 break-words">
+                <Markdown className="mt-4 break-words">
                   {publication.metadata?.content?.replace(
                     /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi,
                     "[LINK]($1)"
                   )}
-                </div>
+                </Markdown>
               </CardContent>
             </Card>
           ))}
