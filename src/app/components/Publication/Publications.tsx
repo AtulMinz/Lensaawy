@@ -61,7 +61,7 @@ const Publication = () => {
               </CardHeader>
               <CardContent>
                 <img
-                  className="hover:fill-black"
+                  className=""
                   src={
                     publication.__typename === "Post" || "Quote"
                       ? publication.metadata?.asset?.image?.optimized.uri
@@ -70,8 +70,8 @@ const Publication = () => {
                 />
                 <Markdown className="mt-4 break-words">
                   {publication.metadata?.content?.replace(
-                    /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi,
-                    "[LINK]($1)"
+                    /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi
+                    // "[LINK]($1)"
                   )}
                 </Markdown>
               </CardContent>
