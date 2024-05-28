@@ -1,8 +1,6 @@
 //@ts-nocheck
-
 "use client";
 
-import { apolloClient } from "@/app/helpers/client";
 import {
   ExplorePublicationsOrderByType,
   useExplorePublications,
