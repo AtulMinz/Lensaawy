@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 //@ts-nocheck
 "use client";
 
@@ -16,8 +18,9 @@ import {
 } from "@/components/ui/card";
 import Markdown from "react-markdown";
 import { Suspense } from "react";
+import Link from "next/link";
 
-const Publication = () => {
+const Publication = ({}) => {
   let {
     data: publications,
     loading,
@@ -49,27 +52,37 @@ const Publication = () => {
       <div className="flex justify-center">
         <div className="w-[35vw] space-y-5">
           {publications?.map((publication) => (
-            <Card>
+            <Card
+              key={publication.id}
+              className="bg-neutral-850 border-[1px] border-white"
+            >
               <CardHeader>
-                <CardTitle key={publication.id} className="h-3/4">
-                  {publication.by.handle?.localName}
-                  <div className="text-gray-600 font-extralight text-sm">
+                <CardTitle className="h-3/4 space-x-1">
+                  <span className="text-gray-300">
+                    {publication.by.handle?.localName}
+                  </span>
+                  <Link
+                    href={"#"}
+                    className="text-gray-600 font-extralight text-sm"
+                  >
                     @{publication.by.handle?.fullHandle}
-                  </div>
+                  </Link>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <Suspense fallback={<ReloadIcon />}>
-                  <img
-                    className=""
-                    src={
-                      publication.__typename === "Post" || "Quote"
-                        ? publication.metadata?.asset?.image?.optimized.uri
-                        : ""
-                    }
-                  />
-                </Suspense>
-                <CardDescription>
+                <div className="flex justify-center items-center">
+                  <Suspense fallback={<ReloadIcon />}>
+                    <img
+                      className="rounded-sm"
+                      src={
+                        publication.__typename === "Post" || "Quote"
+                          ? publication.metadata?.asset?.image?.optimized.uri
+                          : ""
+                      }
+                    />
+                  </Suspense>
+                </div>
+                <CardDescription className="flex">
                   <Markdown className="mt-4 break-words">
                     {publication.metadata?.content?.replace(
                       /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi
