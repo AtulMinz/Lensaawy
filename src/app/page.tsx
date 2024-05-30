@@ -9,8 +9,8 @@ export default function Home() {
       <Suspense fallback={"Loading"}>
         <ConnectWallet />
       </Suspense>
-      {/* <Publication /> */}
-      <Profiles localname="stani" />
+      <Publication />
+      {/* <Profiles localname="stani" /> */}
     </div>
   );
 }
